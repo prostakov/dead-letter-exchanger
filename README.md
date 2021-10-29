@@ -1,4 +1,4 @@
-# Dead Lette Exchanger
+# Dead Letter Exchanger
 
 Blazor application for redriving messages from dead letter queue.
 
