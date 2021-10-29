@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterExchanger", "DeadLetterExchanger\DeadLetterExchanger.csproj", "{88D391EE-ADAA-4E66-B964-8AF1EB4F75D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption", "DeadLetterRedemption\DeadLetterRedemption.csproj", "{88D391EE-ADAA-4E66-B964-8AF1EB4F75D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
