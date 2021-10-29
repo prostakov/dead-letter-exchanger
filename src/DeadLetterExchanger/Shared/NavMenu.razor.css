@@ -3,12 +3,52 @@
 }
 
 .top-row {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.4);
+}
+@media (min-width: 641px) {
+    .top-row {
+        background: none;
+    }
+}
+
+.main-title {
+    display: none;
+}
+@media (min-width: 641px) {
+    .main-title {
+        display: block;
+    }
+}
+
+.main-title-small {
+    display: block;
+}
+@media (min-width: 641px) {
+    .main-title-small {
+        display: none;
+    }
 }
 
 .navbar-brand {
     font-size: 1.1rem;
+    font-family: "Chinese Rocks";
+    color: #fff;
+    font-size: 26px;
+    text-shadow: 1px 1px 4px #000;
+    display: block;
+    width: 100%;
+    text-overflow: clip;
+    text-align: center;
+    white-space: break-spaces;
+    line-height: 1.1;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 0;
+}
+@media (min-width: 641px) {
+    .navbar-brand {
+        font-size: 45px;
+    }
 }
 
 .oi {
