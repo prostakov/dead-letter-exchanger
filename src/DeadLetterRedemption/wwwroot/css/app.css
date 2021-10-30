@@ -1,8 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 @font-face {
-    font-family: 'chineser';
-    src: url('../fonts/chineser.ttf') format('ttf');
+    font-family: chineser;
+    src: url('../fonts/chineser.ttf') format('truetype'), url("../fonts/chineser.otf") format('opentype');
 }
 
 html, body {
@@ -47,9 +47,9 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
