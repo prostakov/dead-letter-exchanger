@@ -11,19 +11,16 @@ namespace DeadLetterRedemption.Blazor.Pages
         
         [Inject]
         public AppStateManager AppStateManager { get; set; }
-        
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            AppStateManager.OnChange += (appState =>
-            {
-                _appState = appState;
-                StateHasChanged();
-            });
-            var username = Guid.NewGuid().ToString();
-            await AppStateManager.Initialize(NavigationManager.BaseUri, username);
+            AppStateManager.OnChange += 
+                appState =>
+                {
+                    _appState = appState;
+                    StateHasChanged();
+                };
+            await AppStateManager.Initialize(Guid.NewGuid().ToString());
         }
 
         public async ValueTask DisposeAsync() => await AppStateManager.DisposeAsync();
