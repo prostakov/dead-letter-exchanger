@@ -3,7 +3,7 @@ using DeadLetterRedemption.Common;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DeadLetterRedemption.Web
+namespace DeadLetterRedemption.Blazor
 {
     public class Program
     {

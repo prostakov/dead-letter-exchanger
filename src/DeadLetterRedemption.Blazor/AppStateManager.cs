@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
 
-namespace DeadLetterRedemption.Web
+namespace DeadLetterRedemption.Blazor
 {
     public class AppStateManager : IAsyncDisposable
     {

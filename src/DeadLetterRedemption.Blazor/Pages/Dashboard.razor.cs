@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
-using DeadLetterRedemption.Common.EventArgs;
 using Microsoft.AspNetCore.Components;
 
-namespace DeadLetterRedemption.Web.Pages
+namespace DeadLetterRedemption.Blazor.Pages
 {
     public partial class Dashboard : IAsyncDisposable
     {
