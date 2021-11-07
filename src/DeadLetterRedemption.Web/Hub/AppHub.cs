@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
 using Microsoft.AspNetCore.SignalR;
 
-namespace DeadLetterRedemption.Server.Hub
+namespace DeadLetterRedemption.Web.Hub
 {
     // public class AppHub : Hub<IAppClient>
     public class AppHub : Microsoft.AspNetCore.SignalR.Hub

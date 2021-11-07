@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace DeadLetterRedemption.Server.Hub
+namespace DeadLetterRedemption.Web.Hub
 {
     public interface IAppClient
     {

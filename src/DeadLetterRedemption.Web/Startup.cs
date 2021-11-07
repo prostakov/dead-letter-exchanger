@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Net.Mime;
 using DeadLetterRedemption.Common;
-using DeadLetterRedemption.Server.Hub;
+using DeadLetterRedemption.Web.Hub;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DeadLetterRedemption.Server
+namespace DeadLetterRedemption.Web
 {
     public class Startup
     {

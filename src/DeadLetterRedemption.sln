@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Blazor", "DeadLetterRedemption.Blazor\DeadLetterRedemption.Blazor.csproj", "{88D391EE-ADAA-4E66-B964-8AF1EB4F75D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Server", "DeadLetterRedemption.Server\DeadLetterRedemption.Server.csproj", "{E1C1B750-7697-40ED-B4D0-9C3C6C3F318E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Web", "DeadLetterRedemption.Web\DeadLetterRedemption.Web.csproj", "{E1C1B750-7697-40ED-B4D0-9C3C6C3F318E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Common", "DeadLetterRedemption.Common\DeadLetterRedemption.Common.csproj", "{DADAF455-6F2B-4E74-93D3-5C01E49B4149}"
 EndProject
