@@ -27,6 +27,7 @@ namespace DeadLetterRedemption.Common
                 _hubConnection = new HubConnectionBuilder()
                     .WithUrl(hubBaseUrl.TrimEnd('/') + HubUrl)
                     //, options => options.AccessTokenProvider = async () => await GetAccessTokenValueAsync()) TODO: Authorization
+                    .WithAutomaticReconnect()
                     .Build();
                 Console.WriteLine("ChatClient: calling Start()");
 
