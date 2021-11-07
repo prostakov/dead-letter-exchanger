@@ -1,4 +1,8 @@
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
 using Microsoft.AspNetCore.Components;
@@ -11,6 +15,12 @@ namespace DeadLetterRedemption.Blazor.Pages
         
         [Inject]
         public AppStateManager AppStateManager { get; set; }
+        
+        [Inject]
+        public HttpClient HttpClient { get; set; }
+        
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -24,10 +34,14 @@ namespace DeadLetterRedemption.Blazor.Pages
         }
 
         public async ValueTask DisposeAsync() => await AppStateManager.DisposeAsync();
-
+        
         private async Task TriggerStateChange()
         {
-            await AppStateManager.AppClient.Send("trigger change");
+            //await AppStateManager.AppClient.Send("trigger change");
+            //await HttpClient.GetFromJsonAsync<Weather[]>(NavigationManager.BaseUri.TrimEnd('/') + "/weather");
+            
+            await HttpClient.PostAsync(NavigationManager.BaseUri.TrimEnd('/') + "/admin/trigger", new StringContent("\"action\"", Encoding.UTF8, "application/json"));
+            StateHasChanged();
         }
     }
 }

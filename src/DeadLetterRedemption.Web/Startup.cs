@@ -45,6 +45,7 @@ namespace DeadLetterRedemption.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapHub<AppHub>(AppClient.HubUrl);
                 endpoints.MapFallbackToFile("index.html");
             });
