@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DeadLetterRedemption.Web.Hub
 {
-    //[Authorize, RequiredScope(new[] { "app_hub" })]
+    //[Authorize, RequiredScope(new[] { "app_hub" })] TODO: Authorization
     //public class AppHub : Hub<IAppClient>
     public class AppHub : Microsoft.AspNetCore.SignalR.Hub
     {
