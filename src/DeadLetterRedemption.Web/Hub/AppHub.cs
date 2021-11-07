@@ -29,9 +29,8 @@ namespace DeadLetterRedemption.Web.Hub
         /// <returns></returns>
         public async Task SendMessage(string username, string message)
         {
-            RefreshAppState();
             await Clients.All.SendAsync(MessageTypes.Receive, username, message);
-            await Clients.All.SendAsync(MessageTypes.AppStateChange, _appState);
+            await NotifyAppStateChanged();
         }
 
         /// <summary>
@@ -47,9 +46,7 @@ namespace DeadLetterRedemption.Web.Hub
                 // maintain a lookup of connectionId-to-username
                 _userLookup.Add(currentId, username);
                 // re-use existing message for now
-                await Clients.AllExcept(currentId)
-                    .SendAsync(MessageTypes.Receive, username, $"{username} joined the chat");
-                await Clients.Caller.SendAsync(MessageTypes.AppStateChange, _appState);
+                await Clients.AllExcept(currentId).SendAsync(MessageTypes.Receive, username, $"{username} joined the chat");
             }
         }
 
@@ -77,12 +74,11 @@ namespace DeadLetterRedemption.Web.Hub
                 username = "[unknown]";
 
             _userLookup.Remove(id);
-            await Clients.AllExcept(Context.ConnectionId)
-                .SendAsync(MessageTypes.Receive, username, $"{username} has left the chat");
+            await Clients.AllExcept(Context.ConnectionId).SendAsync(MessageTypes.Receive, username, $"{username} has left the chat");
             await base.OnDisconnectedAsync(e);
         }
 
-        private void RefreshAppState()
+        private async Task NotifyAppStateChanged()
         {
             _appState = new AppState
             {
@@ -90,6 +86,7 @@ namespace DeadLetterRedemption.Web.Hub
                 InFlightCountTotal = Random.Next(1000, 10000),
                 SuccessfulRequeueCountTotal = Random.Next(1000, 10000)
             };
+            await Clients.All.SendAsync(MessageTypes.AppStateChange, _appState);
         }
     }
 }
