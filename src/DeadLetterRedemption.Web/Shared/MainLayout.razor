@@ -1,5 +1,4 @@
-﻿@using DeadLetterRedemption.Common
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 
 <div class="page">
     <div class="sidebar">
@@ -7,31 +6,10 @@
     </div>
 
     <div class="main">
-        <div class="top-row px-4">
-            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-        </div>
 
         <div class="content px-4">
             @Body
-            
-            <button type="button" @onclick="@App"><span class="oi oi-chat" aria-hidden="true"></span> Start!</button>
         </div>
+        
     </div>
 </div>
-
-@code
-{
-    async Task App()
-    {
-        const string url = "http://localhost:6840";
-        AppClient client = new AppClient(url);
-    
-        // add an event handler for incoming messages
-        //client.MessageReceived += MessageReceived;
-        
-        // start the client
-        Console.WriteLine("Index: chart starting...");
-        await client.Start();
-        Console.WriteLine("Index: chart started?");
-    }
-}

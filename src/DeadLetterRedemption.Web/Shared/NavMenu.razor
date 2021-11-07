@@ -1,4 +1,6 @@
-﻿<div class="navbar navbar-dark top-row">
+﻿@using DeadLetterRedemption.Web.Pages;
+
+<div class="navbar navbar-dark top-row">
     
     <span class="main-title">
         <a class="navbar-brand mt-2" href="">Dead Letter</a>
@@ -41,6 +43,8 @@
         </li>
     </ul>
 </div>
+
+<SideDashboard></SideDashboard>
 
 @code {
     private bool collapseNavMenu = true;
