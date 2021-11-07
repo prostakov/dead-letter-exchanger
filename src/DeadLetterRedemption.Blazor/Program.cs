@@ -14,6 +14,14 @@ namespace DeadLetterRedemption.Blazor
 
             builder.Services.AddScoped<AppClient>();
             builder.Services.AddScoped<AppStateManager>();
+            
+            // TODO: Authorization
+            // builder.Services.AddMsalAuthentication(options =>
+            // {
+            //     builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+            //     options.ProviderOptions.DefaultAccessTokenScopes.Add(ApiScope);
+            //     options.ProviderOptions.LoginMode = "redirect";
+            // });
 
             await builder.Build().RunAsync();
         }
