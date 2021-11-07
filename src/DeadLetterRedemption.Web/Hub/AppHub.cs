@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace DeadLetterRedemption.Web.Hub
 {
-    // public class AppHub : Hub<IAppClient>
+    //[Authorize, RequiredScope(new[] { "app_hub" })]
+    //public class AppHub : Hub<IAppClient>
     public class AppHub : Microsoft.AspNetCore.SignalR.Hub
     {
         /// <summary>
