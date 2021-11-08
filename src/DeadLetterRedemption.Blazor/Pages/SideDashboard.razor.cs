@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
+using DeadLetterRedemption.Common.Dto;
 using Microsoft.AspNetCore.Components;
 
 namespace DeadLetterRedemption.Blazor.Pages

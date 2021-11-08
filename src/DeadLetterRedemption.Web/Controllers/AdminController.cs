@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DeadLetterRedemption.Common;
+using DeadLetterRedemption.Common.Dto;
 using DeadLetterRedemption.Web.Hub;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -11,10 +11,10 @@ namespace DeadLetterRedemption.Web.Controllers
     [Route("/admin")]
     public class AdminController : Controller
     {
-        private readonly IHubContext<AppHub> _appHub;
-        private static Random Random = new Random();
+        private static readonly Random Random = new();
+        private readonly IHubContext<AppHub, IAppClient> _appHub;
 
-        public AdminController(IHubContext<AppHub> appHub)
+        public AdminController(IHubContext<AppHub, IAppClient> appHub)
         {
             _appHub = appHub;
         }
@@ -28,7 +28,7 @@ namespace DeadLetterRedemption.Web.Controllers
                 InFlightCountTotal = Random.Next(1000, 10000),
                 SuccessfulRequeueCountTotal = Random.Next(1000, 10000)
             };
-            await _appHub.Clients.All.SendAsync(MessageTypes.AppStateChange, appState);
+            await _appHub.Clients.All.AppStateChanged(appState);
             return Ok();
         }
     }

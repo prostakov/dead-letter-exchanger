@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
+using DeadLetterRedemption.Common.Dto;
 
 namespace DeadLetterRedemption.Web.Hub
 {
     public interface IAppClient
     {
-        Task NotifyGeneralCountersChange();
+        Task AppStateChanged(AppState appState);
     }
 }

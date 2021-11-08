@@ -1,3 +1,5 @@
+using DeadLetterRedemption.Common.Dto;
+
 namespace DeadLetterRedemption.Common.EventArgs
 {
     public class AppStateChangedEventArgs : System.EventArgs

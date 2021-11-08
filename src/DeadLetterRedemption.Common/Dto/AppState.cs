@@ -1,4 +1,4 @@
-namespace DeadLetterRedemption.Common
+namespace DeadLetterRedemption.Common.Dto
 {
     public record AppState
     {

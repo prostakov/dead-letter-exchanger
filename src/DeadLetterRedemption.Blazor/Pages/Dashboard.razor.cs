@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using DeadLetterRedemption.Common;
+using DeadLetterRedemption.Common.Dto;
 using Microsoft.AspNetCore.Components;
 
 namespace DeadLetterRedemption.Blazor.Pages
@@ -30,7 +31,7 @@ namespace DeadLetterRedemption.Blazor.Pages
                     _appState = appState;
                     StateHasChanged();
                 };
-            await AppStateManager.Initialize(Guid.NewGuid().ToString());
+            await AppStateManager.Initialize();
         }
 
         public async ValueTask DisposeAsync() => await AppStateManager.DisposeAsync();

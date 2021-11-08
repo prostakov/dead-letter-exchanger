@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using DeadLetterRedemption.Common.Dto;
 using DeadLetterRedemption.Common.EventArgs;
+using DeadLetterRedemption.Common.Extensions;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace DeadLetterRedemption.Common
@@ -8,20 +11,17 @@ namespace DeadLetterRedemption.Common
     public class AppClient
     {
         public const string HubUrl = "/app-hub";
-
-        private string _username;
+        
         private HubConnection _hubConnection;
-        private bool _isConnectionEstablished = false;
+        private readonly HashSet<IDisposable> _hubRegistrations = new();
+        
+        private bool _isConnectionEstablished;
 
-        public async Task Start(string hubBaseUrl, string username)
+        public async Task Start(string hubBaseUrl)
         {
             if (string.IsNullOrWhiteSpace(hubBaseUrl))
                 throw new ArgumentNullException(nameof(hubBaseUrl));
-            if (string.IsNullOrWhiteSpace(username))
-                throw new ArgumentNullException(nameof(username));
-            
-            _username = username;
-            
+
             if (!_isConnectionEstablished)
             {
                 _hubConnection = new HubConnectionBuilder()
@@ -29,29 +29,28 @@ namespace DeadLetterRedemption.Common
                     //, options => options.AccessTokenProvider = async () => await GetAccessTokenValueAsync()) TODO: Authorization
                     .WithAutomaticReconnect()
                     .Build();
-                Console.WriteLine("ChatClient: calling Start()");
 
-                _hubConnection.On<string, string>(MessageTypes.Receive, (username, message) => 
-                    MessageReceived?.Invoke(this, new MessageReceivedEventArgs(username, message)));
-                _hubConnection.On<AppState>(MessageTypes.AppStateChange, appState => 
-                    AppStateChanged?.Invoke(this, new AppStateChangedEventArgs(appState)));
+                _hubRegistrations.Add(_hubConnection.OnAppStateChanged(OnAppStateChanged));
                 
                 await _hubConnection.StartAsync();
 
-                Console.WriteLine("ChatClient: Start returned");
                 _isConnectionEstablished = true;
-                
-                await _hubConnection.SendAsync(MessageTypes.Register, _username);
             }
         }
         
         public async Task Stop()
         {
             if (_isConnectionEstablished)
-            {
-                // disconnect the client
+            { 
+                // Disconnect the client
                 await _hubConnection.StopAsync();
                 
+                // Clear all hub registrations
+                if (_hubRegistrations.Count > 0)
+                    foreach (var disposable in _hubRegistrations)
+                        disposable.Dispose();
+                _hubRegistrations.Clear();
+
                 // There is a bug in the mono/SignalR client that does not
                 // close connections even after stop/dispose
                 // see https://github.com/mono/mono/issues/18628
@@ -65,19 +64,9 @@ namespace DeadLetterRedemption.Common
         }
 
         public bool IsConnectionEstablished => _isConnectionEstablished;
-        
-        public event MessageReceivedEventHandler MessageReceived;
-        public delegate void MessageReceivedEventHandler(object sender, MessageReceivedEventArgs e);
-        
+
         public event AppStateChangedEventHandler AppStateChanged;
         public delegate void AppStateChangedEventHandler(object sender, AppStateChangedEventArgs e);
-        
-        public async Task Send(string message)
-        {
-            if (!_isConnectionEstablished)
-                throw new InvalidOperationException("Client not started");
-            
-            await _hubConnection.SendAsync(MessageTypes.Send, _username, message);
-        }
+        private void OnAppStateChanged(AppState appState) => AppStateChanged?.Invoke(this, new AppStateChangedEventArgs(appState));
     }
 }
