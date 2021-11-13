@@ -2,24 +2,45 @@
     background-color: rgba(255,255,255,0.25);
     color: white;
     border-radius: 4px;
-    margin: 10px 15px;
+    margin: 0px;
     padding: 8px;
+}
+@media (min-width: 641px) {
+    .mini-dashboard {
+        margin-top: 1.5rem;
+    }
 }
 
 .mini-dashboard .title {
+    display: none;
     font-weight: bold;
     font-size: 16px;
     text-shadow: 0px 0px 3px #000;
     margin-bottom: 0.5rem;
     text-align: center;
 }
+@media (min-width: 641px) {
+    .mini-dashboard .title {
+        display: block;
+    }
+}
 
 .mini-dashboard .badge {
-    font-size: 30px;
+    font-size: 20px;
     box-shadow: 0px 0px 3px #000;   
+}
+@media (min-width: 641px) {
+    .mini-dashboard .badge {
+        font-size: 30px;
+    }
 }
 
 .mini-dashboard .oi {
-    font-size: 20px;
+    font-size: 10px;
     text-shadow: 0px 0px 3px #000;
+}
+@media (min-width: 641px) {
+    .mini-dashboard .oi {
+        font-size: 20px;
+    }
 }
