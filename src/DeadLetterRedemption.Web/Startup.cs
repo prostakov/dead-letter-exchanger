@@ -2,6 +2,7 @@ using System.Linq;
 using System.Net.Mime;
 using DeadLetterRedemption.Common;
 using DeadLetterRedemption.Web.Hub;
+using DeadLetterRedemption.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -23,6 +24,7 @@ namespace DeadLetterRedemption.Web
                 options => options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { MediaTypeNames.Application.Octet }));
             services.AddControllersWithViews();
             services.AddSignalR(options => options.EnableDetailedErrors = true).AddMessagePackProtocol();
+            services.AddSingleton<AppStateNotificationService>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

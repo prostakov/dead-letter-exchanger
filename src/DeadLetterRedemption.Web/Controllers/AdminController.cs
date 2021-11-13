@@ -1,9 +1,6 @@
-using System;
 using System.Threading.Tasks;
-using DeadLetterRedemption.Common.Dto;
-using DeadLetterRedemption.Web.Hub;
+using DeadLetterRedemption.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 
 namespace DeadLetterRedemption.Web.Controllers
 {
@@ -11,24 +8,17 @@ namespace DeadLetterRedemption.Web.Controllers
     [Route("/admin")]
     public class AdminController : Controller
     {
-        private static readonly Random Random = new();
-        private readonly IHubContext<AppHub, IAppClient> _appHub;
+        private readonly AppStateNotificationService _appStateNotificationService;
 
-        public AdminController(IHubContext<AppHub, IAppClient> appHub)
+        public AdminController(AppStateNotificationService appStateNotificationService)
         {
-            _appHub = appHub;
+            _appStateNotificationService = appStateNotificationService;
         }
 
         [HttpPost, Route("trigger")]
         public async Task<IActionResult> TriggerChange([FromBody] string action)
         {
-            var appState = new AppState
-            {
-                DeadLetterCountTotal = Random.Next(1000, 10000),
-                InFlightCountTotal = Random.Next(1000, 10000),
-                SuccessfulRequeueCountTotal = Random.Next(1000, 10000)
-            };
-            await _appHub.Clients.All.AppStateChanged(appState);
+            await _appStateNotificationService.UpdateState();
             return Ok();
         }
     }
