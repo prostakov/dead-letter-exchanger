@@ -27,7 +27,7 @@ namespace DeadLetterRedemption.Web.Services
 
         public async Task UpdateState()
         {
-            _appState.DeadLetterCountTotal = Random.Next(1000, 10000);
+            _appState.DeadLetterCountTotal = Random.Next(1000, 100_000_000);
             _appState.InFlightCountTotal = Random.Next(1000, 10000);
             _appState.SuccessfulRequeueCountTotal = Random.Next(1000, 10000);
             
