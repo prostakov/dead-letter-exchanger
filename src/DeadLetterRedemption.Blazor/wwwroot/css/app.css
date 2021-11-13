@@ -53,3 +53,24 @@ a, .btn-link {
     right: 0.75rem;
     top: 0.5rem;
 }
+
+@-webkit-keyframes glow-danger {
+    to {
+        color: #fd0401;
+    }
+}
+
+@-webkit-keyframes glow-warning {
+    to {
+        color: #ffc106;
+    }
+}
+
+.glowing-danger {
+    -webkit-animation: glow-danger 0.5s infinite alternate;
+}
+
+.glowing-warning {
+    -webkit-animation: glow-warning 0.5s infinite alternate;
+}
+
