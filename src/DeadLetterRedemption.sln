@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Common", "DeadLetterRedemption.Common\DeadLetterRedemption.Common.csproj", "{DADAF455-6F2B-4E74-93D3-5C01E49B4149}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F6E22749-C801-4148-8B85-95DB0DE4A9DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLetterRedemption.Integration.Tests", "Tests\DeadLetterRedemption.Integration.Tests\DeadLetterRedemption.Integration.Tests.csproj", "{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{DADAF455-6F2B-4E74-93D3-5C01E49B4149}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DADAF455-6F2B-4E74-93D3-5C01E49B4149}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DADAF455-6F2B-4E74-93D3-5C01E49B4149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FAFFDF1B-0672-4E45-8C5F-B2FCBCB650D0} = {F6E22749-C801-4148-8B85-95DB0DE4A9DA}
 	EndGlobalSection
 EndGlobal
